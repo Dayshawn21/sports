@@ -1,16 +1,22 @@
-import { React, useContext } from 'react';
-import ResidenceItem from './ResidenceItem';
-import ResidenceContext from '../../context/residence/residenceContent';
+import React, {useContext, Fragment} from 'react'
+import ResidenceContext from '../../context/residence/residenceContent'
+import ResidenceItem from './ResidenceItem'
 
-function Residence() {
-	const residenceContent = useContext(ResidenceContext);
 
-	const { residences, filtered } = residenceContent;
+const Residence = () => {
+	const residenceContext = useContext(ResidenceContext)
 
-	if (residences.lenght === 0) {
-		return <h4>Enter a Residence</h4>;
+	const { residences } = residenceContext
+	if (residences.length === 0) {
+		return <h4>Please Enter a Contact </h4>;
 	}
-	return <div>{residences.map((residence) => <h1>{residence.title}</h1>)}</div>;
+	return (
+		<Fragment>
+			{residences.map(residence => (
+				<ResidenceItem key={residence.id} residence={residence} />
+			))}
+		</Fragment>
+	)
 }
 
-export default Residence;
+export default Residence

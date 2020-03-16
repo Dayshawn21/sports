@@ -1,7 +1,17 @@
 .hero {
- background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../images/hero.jpg')no-repeat center right/cover;
- height: 50vh;
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+		url('../../images/hero.jpg')no-repeat center right/cover;
+	height: 70vh;
 }
-h1{ 
-  color: wheat;
+h1 {
+	color: wheat;
 }
+
+.service{
+	border: black .2rem solid;
+	padding: .6rem;
+}
+.serviceTitle{
+	display: flex;
+}
+

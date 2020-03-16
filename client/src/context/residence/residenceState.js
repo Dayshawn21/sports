@@ -13,7 +13,7 @@ import {
 
 const ResidenceState = (props) => {
 	const initialState = {
-		residence : [
+		residences : [
 			{
 				id          : 1,
 				title       : 'Beauty Residence',
@@ -26,8 +26,7 @@ const ResidenceState = (props) => {
 				description : 'dsdsfsdfsd jkdsfdsh fdsjkfkdslsfhs fsfsdfsd'
 			}
 		],
-		current   : null,
-		filtered  : null
+		
 	};
 
 	const [
@@ -68,7 +67,7 @@ const ResidenceState = (props) => {
 	return (
 		<ResidenceContext.Provider
 			value={{
-				residence       : state.residence,
+				residences       : state.residences,
 				current         : state.current,
 				filtered        : state.filtered,
 				addResidence,
