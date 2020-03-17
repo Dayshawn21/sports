@@ -3,12 +3,12 @@ import ResidenceContext from '../../context/residence/residenceContent';
 
 const ResidenceItem = ({residence}) => {
 	const residenceContext = useContext(ResidenceContext);
-	const { deleteContact, setCurrent, clearCurrent } = residenceContext;
+	const { deleteResidence, setCurrent, clearCurrent } = residenceContext;
 
 	const { id, title, bedrooms, bathrooms, sqft, type, description, location, price } = residence;
 
 	const onDelete = () => {
-		deleteContact(id);
+		deleteResidence(id);
 		clearCurrent();
 	};
 	return (

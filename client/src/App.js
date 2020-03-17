@@ -5,9 +5,11 @@ import Nav from './compents/layout/Nav';
 import Home from './compents/pages/Home';
 import Admin from './compents/pages/Admin';
 import ResidenceState from './context/residence/residenceState';
+import AuthState from './context/auth/AuthState';
 
 const App = () => {
 	return (
+		<AuthState>
 		<ResidenceState>
 		<Router>
 			<Fragment>
@@ -19,6 +21,7 @@ const App = () => {
 			</Fragment>
 		</Router>
 		</ResidenceState>
+		</AuthState>
 	);
 };
 

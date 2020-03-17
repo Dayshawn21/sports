@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import ResidenceContext from './residenceContent';
 import residenceReducer from './residenceReducer';
 import {
+	ADD_RESIDENCE,
 	DELETE_RESIDENCE,
 	UPDATE_RESIDENCE,
 	SET_CURRENT,
@@ -26,6 +27,8 @@ const ResidenceState = (props) => {
 				description : 'dsdsfsdfsd jkdsfdsh fdsjkfkdslsfhs fsfsdfsd'
 			}
 		],
+		current  : null,
+		filtered : null
 		
 	};
 
@@ -36,11 +39,11 @@ const ResidenceState = (props) => {
 
 	const addResidence = (residence) => {
 		residence.id = uuidv4();
-		dispatch({ type: 'ADD_RESIDENCE', payload: residence });
+		dispatch({ type: ADD_RESIDENCE, payload: residence });
 	};
 
 	const deleteResidence = (id) => {
-		dispatch({ tyepe: DELETE_RESIDENCE, payload: id });
+		dispatch({ type: DELETE_RESIDENCE, payload: id });
 	};
 	const setCurrent = (residence) => {
 		dispatch({ type: SET_CURRENT, payload: residence });

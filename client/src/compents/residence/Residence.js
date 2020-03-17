@@ -8,7 +8,7 @@ const Residence = () => {
 
 	const { residences } = residenceContext
 	if (residences.length === 0) {
-		return <h4>Please Enter a Contact </h4>;
+		return <h4>Please Enter a Residence </h4>;
 	}
 	return (
 		<Fragment>
