@@ -1,18 +1,25 @@
-import React from 'react'
-import Residence from '../residence/Residence'
-import ResidenceForm from '../residence/ResidenceForm'
+import React, { useContext, useEffect } from 'react';
+import Residence from '../residence/Residence';
+import ResidenceForm from '../residence/ResidenceForm';
+import AuthContext from '../../context/auth/AuthContext';
 
 const Admin = () => {
-  return (
-    <div className='grid-2'>
-      <div>
-        <ResidenceForm/>
-      </div>
-      <div>
-      <Residence/>
-      </div>
-    </div>
-  )
-}
+	const authContext = useContext(AuthContext);
 
-export default Admin
+	useEffect(() => {
+		authContext.loadUser();
+		// eslint-disable-next-line
+	}, []);
+	return (
+		<div className="grid-2">
+			<div>
+				<ResidenceForm />
+			</div>
+			<div>
+				<Residence />
+			</div>
+		</div>
+	);
+};
+
+export default Admin;
