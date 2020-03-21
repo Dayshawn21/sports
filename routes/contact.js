@@ -3,15 +3,15 @@ const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const auth = require('../middleware/auth');
 const User = require('../models/Users');
-const Contact = require('../models/Contact');
+const Residence = require('../models/Contact');
 
 //  @ route Get api/contact
 //  Get all users contact
 // Private
 router.get('/', auth, async (req, res) => {
 	try {
-		const contact = await Contact.find({ user: req.user.id }).sort({ date: -1 });
-		res.json(contact);
+		const residences = await Residence.find({ user: req.user.id }).sort({ date: -1 });
+		res.json(residences);
 	} catch (error) {
 		console.error(error.message);
 		res.status(500).send('Server Error');
@@ -32,48 +32,54 @@ router.post(
 			return res.status(400).json({ errors: errors.array() });
 		}
 
-		const { title, price, rooms, location, type } = req.body;
+		const { title, price, bedrooms, bathrooms, sqft, location, description, type } = req.body;
 
 		try {
-			const newContact = new Contact({
+			const newResidence = new Residence({
 				title,
 				price,
-				rooms,
+				bedrooms,
+				bathrooms,
+				sqft,
 				location,
 				type,
-				user     : req.user.id
+				description,
+				user        : req.user.id
 			});
 
-			const contact = await newContact.save();
-			res.json(contact);
+			const residence = await newResidence.save();
+			res.json(residence);
 		} catch (error) {
 			console.log(error);
-			res.status(500).send('Server Error');
+			res.status(500).send('Server Error!!!!');
 		}
 	}
 );
 
 router.put('/:id', auth, async (req, res) => {
-	const { title, price, room, location, type } = req.body;
+	const { title, price, bedrooms, bathrooms, sqft, location, description } = req.body;
 
-	const contactField = {};
-	if (title) contactField.title = title;
-	if (price) contactField.title = price;
-	if (rooms) contactField.title = room;
-	if (location) contactField.title = location;
-	if (type) contactField.title = type;
+	const residenceField = {};
+	if (title) residenceField.title = title;
+	if (price) residenceField.title = price;
+	if (bedrooms) residenceField.title = bedrooms;
+	if (bathrooms) residenceField.title = bathrooms;
+	if (sqft) residenceField.title = sqft;
+	if (location) residenceField.title = location;
+	if (type) residenceField.title = type;
+	if (description) residenceField.title = description;
 
 	try {
-		let contact = await Contact.findById(req.params.id);
-		if (!contact) return res.status(404).json({ msg: 'Contact not found' });
+		let residence = await Residence.findById(req.params.id);
+		if (!residence) return res.status(404).json({ msg: 'Contact not found' });
 
-		if (contact.user.toString() !== req.user.id) {
+		if (residence.user.toString() !== req.user.id) {
 			return res.status(401).json({ msg: 'Not authorized' });
 		}
 
-		contact = await Contact.findByIdAndUpdate(req.params.id, { $set: contactField }, { new: true });
+		residence = await Residence.findByIdAndUpdate(req.params.id, { $set: residenceField }, { new: true });
 
-		res.json(contact);
+		res.json(residence);
 	} catch (error) {
 		console.error(error.message);
 		res.status(500).send('Server Error');
@@ -82,14 +88,14 @@ router.put('/:id', auth, async (req, res) => {
 
 router.delete('/:id', auth, async (req, res) => {
 	try {
-		let contact = await Contact.findById(req.params.id);
-		if (!contact) return res.status(404).json({ msg: 'Contact not found' });
+		let residence = await Residence.findById(req.params.id);
+		if (!residence) return res.status(404).json({ msg: 'Contact not found' });
 
-		if (contact.user.toString() !== req.user.id) {
+		if (residence.user.toString() !== req.user.id) {
 			return res.status(401).json({ msg: 'Not authorized' });
 		}
 
-		await Contact.findByIdAndRemove(req.params.id);
+		await Residence.findByIdAndRemove(req.params.id);
 
 		res.json({ msg: 'Contact Removed' });
 	} catch (error) {

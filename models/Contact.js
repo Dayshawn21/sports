@@ -1,37 +1,49 @@
 const mongoose = require('mongoose');
 
-const ContactSchema = mongoose.Schema({
-	user     : {
+const ResidenceSchema = mongoose.Schema({
+	user        : {
 		type : mongoose.Schema.Types.ObjectId,
 		ref  : 'users'
 	},
 
-	title    : {
+	title       : {
 		type     : String,
 		required : true
 	},
-	price    : {
+	price       : {
 		type     : String,
 		required : true
 	},
-	rooms    : {
+	bedrooms    : {
+		type     : String,
+		required : true
+	},
+	bathrooms   : {
+		type     : String,
+		required : true
+	},
+	sqft        : {
 		type     : String,
 		required : true
 	},
 
-	location : {
+	location    : {
 		type     : String,
 		required : true
 	},
-	type     : {
+	type        : {
+		type     : String,
+		required : true
+	},
+	description : {
 		type     : String,
 		required : true
 	},
 
-	date     : {
+	date        : {
 		type    : Date,
 		default : Date.now
 	}
 });
 
-module.exports = mongoose.model('contact', ContactSchema);
+module.exports = mongoose.model('residence', ResidenceSchema);

@@ -12,6 +12,7 @@ import Register from './compents/auth/Register';
 import Login from './compents/auth/Login';
 import Alert from './compents/layout/Alert';
 import setAuthToken from './uitles/setAuthToken';
+import PrivateRoute from './compents/routes/PrivateRoute';
 
 if (localStorage.token) {
 	setAuthToken(localStorage.token);
@@ -29,7 +30,7 @@ const App = () => {
 							<Switch>
 								<Route exact path="/" component={Home} />
 								<Route exact path="/about" component={About} />
-								<Route exact path="/admin" component={Admin} />
+								<PrivateRoute exact path="/admin" component={Admin} />
 								<Route exact path="/register" component={Register} />
 								<Route exact path="/login" component={Login} />
 							</Switch>

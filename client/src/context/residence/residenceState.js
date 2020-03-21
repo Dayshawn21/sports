@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react';
+import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import ResidenceContext from './residenceContent';
 import residenceReducer from './residenceReducer';
@@ -9,27 +10,16 @@ import {
 	SET_CURRENT,
 	CLEAR_FILTER,
 	CLEAR_CURRENT,
-	FILTER_RESIDENCE
+	FILTER_RESIDENCE,
+	RESIDENCE_ERROR
 } from '../type';
 
 const ResidenceState = (props) => {
 	const initialState = {
-		residences : [
-			{
-				id          : 1,
-				title       : 'Beauty Residence',
-				price       : '$1000',
-				bedrooms    : '2',
-				bathrooms   : '1',
-				sqft        : '920sqft',
-				location    : 'Houston',
-				type        : 'Rent',
-				description : 'dsdsfsdfsd jkdsfdsh fdsjkfkdslsfhs fsfsdfsd'
-			}
-		],
-		current  : null,
-		filtered : null
-		
+		residences : [],
+		current    : null,
+		filtered   : null,
+		error      : null
 	};
 
 	const [
@@ -37,9 +27,21 @@ const ResidenceState = (props) => {
 		dispatch
 	] = useReducer(residenceReducer, initialState);
 
-	const addResidence = (residence) => {
-		residence.id = uuidv4();
-		dispatch({ type: ADD_RESIDENCE, payload: residence });
+	const addResidence = async (residence) => {
+		const config = {
+			headers : {
+				'Content-Type' : 'application/json'
+			}
+		};
+		try {
+			const res = await axios.post('/api/contact', residence, config);
+			dispatch({ type: ADD_RESIDENCE, payload: res.data });
+		} catch (err) {
+			dispatch({
+				type    : RESIDENCE_ERROR,
+				payload : err.response.msg
+			});
+		}
 	};
 
 	const deleteResidence = (id) => {
@@ -70,9 +72,10 @@ const ResidenceState = (props) => {
 	return (
 		<ResidenceContext.Provider
 			value={{
-				residences       : state.residences,
+				residences      : state.residences,
 				current         : state.current,
 				filtered        : state.filtered,
+				error           : state.error,
 				addResidence,
 				deleteResidence,
 				updateResidence,
