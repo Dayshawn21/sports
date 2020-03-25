@@ -57,7 +57,7 @@ router.post(
 );
 
 router.put('/:id', auth, async (req, res) => {
-	const { title, price, bedrooms, bathrooms, sqft, location, description } = req.body;
+	const { title, price, bedrooms, bathrooms, sqft, location, type, description } = req.body;
 
 	const residenceField = {};
 	if (title) residenceField.title = title;

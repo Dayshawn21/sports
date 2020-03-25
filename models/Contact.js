@@ -8,15 +8,19 @@ const ResidenceSchema = mongoose.Schema({
 
 	title       : {
 		type     : String,
-		required : true
+		required : true,
+
+		trim     : true
 	},
 	price       : {
 		type     : String,
-		required : true
+		required : true,
+		trim     : true
 	},
 	bedrooms    : {
 		type     : String,
-		required : true
+		required : true,
+		trim     : true
 	},
 	bathrooms   : {
 		type     : String,
@@ -24,20 +28,24 @@ const ResidenceSchema = mongoose.Schema({
 	},
 	sqft        : {
 		type     : String,
-		required : true
+		required : true,
+		trim     : true
 	},
 
 	location    : {
 		type     : String,
-		required : true
+		required : true,
+		trim     : true
 	},
 	type        : {
 		type     : String,
-		required : true
+		required : true,
+		trim     : true
 	},
 	description : {
 		type     : String,
-		required : true
+		required : true,
+		trim     : true
 	},
 
 	date        : {
