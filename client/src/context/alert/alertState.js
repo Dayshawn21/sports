@@ -25,14 +25,6 @@ const AlertState = (props) => {
 		setTimeout(() => dispatch({ type: REMOVE_ALERT, payload: id }), timeout);
 	};
 
-	// Register User
-
-	// login User
-
-	// logout
-
-	// clear error
-
 	return (
 		<AlertContext.Provider
 			value={{

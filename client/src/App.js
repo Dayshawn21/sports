@@ -13,6 +13,7 @@ import Login from './compents/auth/Login';
 import Alert from './compents/layout/Alert';
 import setAuthToken from './uitles/setAuthToken';
 import PrivateRoute from './compents/routes/PrivateRoute';
+import HomeState from './context/home/homeState';
 
 if (localStorage.token) {
 	setAuthToken(localStorage.token);
@@ -23,19 +24,21 @@ const App = () => {
 		<AuthState>
 			<ResidenceState>
 				<AlertState>
-					<Router>
-						<Fragment>
-							<Nav />
-							<Alert />
-							<Switch>
-								<Route exact path="/" component={Home} />
-								<Route exact path="/about" component={About} />
-								<PrivateRoute exact path="/admin" component={Admin} />
-								<Route exact path="/register" component={Register} />
-								<Route exact path="/login" component={Login} />
-							</Switch>
-						</Fragment>
-					</Router>
+					<HomeState>
+						<Router>
+							<Fragment>
+								<Nav />
+								<Alert />
+								<Switch>
+									<Route exact path="/" component={Home} />
+									<Route exact path="/about" component={About} />
+									<PrivateRoute exact path="/admin" component={Admin} />
+									<Route exact path="/register" component={Register} />
+									<Route exact path="/login" component={Login} />
+								</Switch>
+							</Fragment>
+						</Router>
+					</HomeState>
 				</AlertState>
 			</ResidenceState>
 		</AuthState>

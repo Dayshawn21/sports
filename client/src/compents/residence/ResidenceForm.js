@@ -12,9 +12,9 @@ const ResidenceForm = () => {
 			else {
 				setResidence({
 					type        : 'Rent',
-					title       : ' ',
-					price       : ' ',
-					bedrooms    : ' ',
+					title       : '',
+					price       : '',
+					bedrooms    : '',
 					bathrooms   : '',
 					sqft        : '',
 					location    : '',
@@ -33,9 +33,9 @@ const ResidenceForm = () => {
 		setResidence
 	] = useState({
 		type        : 'Rent',
-		title       : ' ',
-		price       : ' ',
-		bedrooms    : ' ',
+		title       : '',
+		price       : '',
+		bedrooms    : '',
 		bathrooms   : '',
 		sqft        : '',
 		location    : '',
@@ -81,7 +81,7 @@ const ResidenceForm = () => {
 			<div>
 				<input
 					type="submit"
-					value={current ? 'Update Contact' : 'Add Contact'}
+					value={current ? 'Update Residence' : 'Add Residence'}
 					className="btn btn-primary btn-block"
 				/>
 			</div>

@@ -399,6 +399,15 @@ table th {
 	transition: opacity 1000ms ease-in;
 }
 
+.card-content {
+	position: absolute;
+	top: 8px;
+	left: 16px;
+	color: white;
+	background: rgb(0, 0, 0); /* Fallback color */
+	background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+}
+
 /* Mobile Styles */
 @media (max-width: 700px) {
 	.hide-sm {

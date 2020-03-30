@@ -10,8 +10,8 @@ const HomeForm = () => {
 		setResidence
 	] = useState({
 		type      : 'Rent',
-		price     : ' ',
-		bedrooms  : ' ',
+		price     : '',
+		bedrooms  : '',
 		bathrooms : '',
 		location  : ''
 	});
